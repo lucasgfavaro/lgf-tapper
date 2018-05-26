@@ -1,0 +1,48 @@
+buildscript {
+        repositories {
+            mavenCentral()
+            jcenter()
+        }
+        dependencies {
+            classpath 'org.springframework:springloaded:1.2.5.RELEASE'
+        }
+}
+
+apply plugin: 'idea'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+
+    buildscript {
+        repositories {
+            mavenCentral()
+            mavenLocal()
+            jcenter()
+        }
+        dependencies {
+            classpath 'org.springframework:springloaded:1.2.5.RELEASE'
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        testCompile "junit:junit:4.8.2"
+        testCompile "org.mockito:mockito-core:1.+"
+    }
+
+    group = 'com.lgf'
+}
+
+repositories {
+    jcenter()
+}

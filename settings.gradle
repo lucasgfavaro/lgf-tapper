@@ -1,0 +1,4 @@
+rootProject.name = 'lgf-tapper'
+
+//Spring boot web - REST Api micro-service
+include 'lgf-tapper-api'
