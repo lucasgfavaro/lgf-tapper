@@ -3,6 +3,11 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 250px;
   box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+footer {
+  background: #efefef;
+  padding: 15px;
 }
