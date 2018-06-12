@@ -1,10 +1,10 @@
-package com.lgf.tapper.resources.v1.products;
+package com.lgf.tapper.resources.v1;
 
 import com.lgf.tapper.domain.Product;
+import com.lgf.tapper.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

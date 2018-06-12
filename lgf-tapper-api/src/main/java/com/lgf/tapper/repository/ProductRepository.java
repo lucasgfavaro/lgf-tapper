@@ -1,4 +1,4 @@
-package com.lgf.tapper.resources.v1.products.repository;
+package com.lgf.tapper.repository;
 
 import com.lgf.tapper.domain.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;

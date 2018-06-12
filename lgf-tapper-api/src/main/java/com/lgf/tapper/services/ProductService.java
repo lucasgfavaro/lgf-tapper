@@ -1,7 +1,7 @@
-package com.lgf.tapper.resources.v1.products;
+package com.lgf.tapper.services;
 
 import com.lgf.tapper.domain.Product;
-import com.lgf.tapper.resources.v1.products.repository.ProductRepository;
+import com.lgf.tapper.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
