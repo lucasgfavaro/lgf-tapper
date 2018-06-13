@@ -1,7 +1,7 @@
 package com.lgf.tapper.resources.v1;
 
-import com.lgf.tapper.domain.Product;
-import com.lgf.tapper.services.ProductService;
+import com.lgf.tapper.domain.ClubMember;
+import com.lgf.tapper.services.ClubMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,19 +12,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/")
-public class ProductResource {
+public class ClubMembersResource {
 
-    private ProductService service;
+    private ClubMemberService service;
 
     @Autowired
-    public ProductResource(ProductService productService) {
-        this.service = productService;
+    public ClubMembersResource(ClubMemberService clubMemberService) {
+         this.service = clubMemberService;
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @RequestMapping(value = "/clubmembers", method = RequestMethod.GET)
     @ResponseBody
-    public List<Product> getProduct() {
-
+    public List<ClubMember> getClubMembers() {
         return service.getAll();
     }
 }
