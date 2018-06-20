@@ -1,12 +1,11 @@
 
 <div class="grid grid-pad">
-  <a *ngFor="let product of products" class="col-1-4">
-    <div >
-      <h4>{{product.id}}-{{product.name}}</h4>
-    </div>
-  </a>
-</div>
-<div>
-
+  <li *ngFor="let product of products" (click)="onSelect(product)">
+    {{ product.name | uppercase }}
+  </li>
+  <div *ngIf="selectedProduct">
+    <h2>{{ selectedProduct.name | uppercase }} Details</h2>
+    <div><span>id: </span>{{selectedProduct.id}}</div>
+  </div>
 
 </div>

@@ -17,6 +17,7 @@ import { TapperTableComponent } from './components/tapper-table/tapper-table.com
 import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
 import { OrderStepperComponent } from './components/order-stepper/order-stepper.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { ClubMemberSelectorComponent } from './components/club-member-selector/club-member-selector.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     TapperTableComponent,
     ProductSelectorComponent,
     OrderStepperComponent,
-    MessagesComponent
+    MessagesComponent,
+    ClubMemberSelectorComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, LayoutModule,

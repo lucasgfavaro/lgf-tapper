@@ -8,10 +8,23 @@
   </mat-step>
 
   <mat-step>
-    ...
+    <app-club-member-selector (clubMemberSelected)="onClubMemberSelection($event)"></app-club-member-selector>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <div *ngIf="selectedFinalProduct">
+      {{ selectedFinalProduct.name | uppercase }}
+    </div>
+    <div *ngIf="selectedFinalClubMember">
+      {{ selectedFinalClubMember.firstName | uppercase }}
+    </div>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="onSelect()"> Ok </button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

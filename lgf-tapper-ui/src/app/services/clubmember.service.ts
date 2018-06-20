@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Product } from '../domain/product';
+import { ClubMember } from '../domain/clubmember';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ClubMemberService {
 
-  private productsUrl = 'http://localhost:8080/api/products';
+  private clubMembersUrl = 'http://localhost:8080/api/clubmembers';
 
   constructor(private http: HttpClient,
   private messageService: MessageService) { }
 
-  getProducts(): Observable<Product[]> {
-    this.messageService.add('ProductService: fetched products');
-    return this.http.get<Product[]>(this.productsUrl)
-    //return of(PRODUCTS);
+  getClubMembers(): Observable<ClubMember[]> {
+    this.messageService.add('ClubMemberService: fetched clubMembers');
+    return this.http.get<ClubMember[]>(this.clubMembersUrl)
   }
 }

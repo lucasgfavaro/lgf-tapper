@@ -1,0 +1,9 @@
+<div class="grid grid-pad">
+  <li *ngFor="let clubMember of clubMembers" (click)="onSelect(clubMember)">
+    {{ clubMember.firstName | uppercase }} {{ clubMember.lastName | uppercase }}
+  </li>
+  <div *ngIf="selectedClubMember">
+    <h2>{{ selectedClubMember.firstName | uppercase }} {{ selectedClubMember.lastName | uppercase }} Details</h2>
+    <div><span>id: </span>{{selectedClubMember.id}}</div>
+  </div>
+</div>
