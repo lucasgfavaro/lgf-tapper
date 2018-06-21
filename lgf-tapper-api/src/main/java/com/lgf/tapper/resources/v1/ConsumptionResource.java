@@ -3,10 +3,9 @@ package com.lgf.tapper.resources.v1;
 import com.lgf.tapper.domain.Consumption;
 import com.lgf.tapper.services.ConsumptionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/")
@@ -19,10 +18,18 @@ public class ConsumptionResource {
          this.service = consumptionService;
     }
 
+    @RequestMapping(value = "/consumptions", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Consumption> findAll() {
+
+        return service.findAll();
+    }
+
     @RequestMapping(value = "/consumptions", method = RequestMethod.POST)
     public void create(@RequestBody Consumption consumption) {
 
         service.save(consumption);
-
     }
+
+
 }

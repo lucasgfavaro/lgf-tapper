@@ -1,6 +1,6 @@
 <mat-horizontal-stepper>
   <mat-step>
-    <app-product-selector></app-product-selector>
+    <app-product-selector (productSelected)="onProductSelection($event)"></app-product-selector>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
@@ -17,14 +17,14 @@
 
   <mat-step>
     <div *ngIf="selectedFinalProduct">
-      {{ selectedFinalProduct.name | uppercase }}
+      {{ selectedFinalProduct.id | uppercase }} {{selectedFinalProduct.name | uppercase }}
     </div>
     <div *ngIf="selectedFinalClubMember">
-      {{ selectedFinalClubMember.firstName | uppercase }}
+      {{ selectedFinalClubMember.id | uppercase }} {{ selectedFinalClubMember.firstName | uppercase }} {{ selectedFinalClubMember.lastName | uppercase }}
     </div>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="onSelect()"> Ok </button>
+      <button mat-button (click)="onFinish()"> Ok </button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

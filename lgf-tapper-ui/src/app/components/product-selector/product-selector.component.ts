@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Product } from '../../domain/product'
 import { ProductService } from '../../services/product.service';
 
@@ -12,6 +12,7 @@ export class ProductSelectorComponent implements OnInit {
 
   products: Product[];
   selectedProduct: Product;
+  @Output() productSelected = new EventEmitter<Product>();
 
   constructor(private productService: ProductService) { }
 
@@ -26,5 +27,6 @@ export class ProductSelectorComponent implements OnInit {
 
   onSelect(product: Product): void {
     this.selectedProduct = product;
+    this.productSelected.emit(this.selectedProduct);
   }
 }

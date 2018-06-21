@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { ClubMember } from '../../domain/clubmember';
+import { ClubMember } from '../../domain/clubMember';
 import { ClubMemberService } from '../../services/clubMember.service';
 
 @Component({

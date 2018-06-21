@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ClubMember } from '../domain/clubmember';
+import { ClubMember } from '../domain/clubMember';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 
@@ -8,7 +8,6 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class ClubMemberService {
-
   private clubMembersUrl = 'http://localhost:8080/api/clubmembers';
 
   constructor(private http: HttpClient,
