@@ -17,6 +17,5 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     this.messageService.add('ProductService: fetched products');
     return this.http.get<Product[]>(this.productsUrl)
-    //return of(PRODUCTS);
   }
 }

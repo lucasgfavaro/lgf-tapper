@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -19,6 +20,19 @@ import { OrderStepperComponent } from './components/order-stepper/order-stepper.
 import { MessagesComponent } from './components/messages/messages.component';
 import { ClubMemberSelectorComponent } from './components/club-member-selector/club-member-selector.component';
 import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.component';
+import { ConsumptionsListComponent } from './components/consumptions-list/consumptions-list.component';
+import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+{ path: 'order-consumption', component: OrderStepperComponent },
+{ path: 'list-consumptions', component: ConsumptionsListComponent },
+{ path: 'club-members', component: ClubMembersListComponent },
+{ path: 'products', component: ProductListComponent },
+{ path: '',   redirectTo: '/order-consumption', pathMatch: 'full' },
+{ path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [
@@ -30,13 +44,36 @@ import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.
     OrderStepperComponent,
     MessagesComponent,
     ClubMemberSelectorComponent,
-    PhotoCaptureComponent
+    PhotoCaptureComponent,
+    ConsumptionsListComponent,
+    ClubMembersListComponent,
+    ProductListComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, LayoutModule,
-     MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
-      MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule,
-      MatSortModule, AppRoutingModule, MatStepperModule, MatFormFieldModule, ReactiveFormsModule, HttpClientModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(
+          appRoutes,
+          { enableTracing: true } // <-- debugging purposes only
+    ),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    AppRoutingModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,8 @@
+<div class="grid grid-pad">
+  <li *ngFor="let consumption of consumptions">
+    {{ consumption.product.name | uppercase }}
+    {{ consumption.clubMember.firstName | uppercase }}
+    {{ consumption.product.lastName | uppercase }}
+    {{ consumption.createdOn | uppercase }}
+  </li>
+</div>
