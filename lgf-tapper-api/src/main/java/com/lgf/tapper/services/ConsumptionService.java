@@ -5,6 +5,9 @@ import com.lgf.tapper.repository.ConsumptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -24,6 +27,8 @@ public class ConsumptionService {
 
     public void save(Consumption consumption) {
 
+        LocalDateTime createdOn = LocalDateTime.now();
+        consumption.setCreatedOn(createdOn);
         repository.save(consumption);
     }
 

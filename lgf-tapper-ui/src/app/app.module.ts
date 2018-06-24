@@ -18,6 +18,7 @@ import { ProductSelectorComponent } from './components/product-selector/product-
 import { OrderStepperComponent } from './components/order-stepper/order-stepper.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ClubMemberSelectorComponent } from './components/club-member-selector/club-member-selector.component';
+import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ClubMemberSelectorComponent } from './components/club-member-selector/c
     ProductSelectorComponent,
     OrderStepperComponent,
     MessagesComponent,
-    ClubMemberSelectorComponent
+    ClubMemberSelectorComponent,
+    PhotoCaptureComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, LayoutModule,
