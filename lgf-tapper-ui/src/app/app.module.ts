@@ -23,16 +23,8 @@ import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.
 import { ConsumptionsListComponent } from './components/consumptions-list/consumptions-list.component';
 import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-const appRoutes: Routes = [
-{ path: 'order-consumption', component: OrderStepperComponent },
-{ path: 'list-consumptions', component: ConsumptionsListComponent },
-{ path: 'club-members', component: ClubMembersListComponent },
-{ path: 'products', component: ProductListComponent },
-{ path: '',   redirectTo: '/order-consumption', pathMatch: 'full' },
-{ path: '**', component: PageNotFoundComponent }
-];
 
 @NgModule({
   declarations: [
@@ -53,10 +45,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-          appRoutes,
-          { enableTracing: true } // <-- debugging purposes only
-    ),
+    AppRoutingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -69,7 +58,6 @@ const appRoutes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    AppRoutingModule,
     MatStepperModule,
     MatFormFieldModule,
     ReactiveFormsModule,
