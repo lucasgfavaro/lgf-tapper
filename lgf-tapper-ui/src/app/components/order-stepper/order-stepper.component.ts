@@ -20,6 +20,7 @@ export class OrderStepperComponent implements OnInit {
   selectedFinalClubMember: ClubMember;
   relatedPhoto64BaseEncoded: string;
 
+
   constructor(private _formBuilder: FormBuilder,
   private messageService: MessageService,
   private consumptionService: ConsumptionService) { }
