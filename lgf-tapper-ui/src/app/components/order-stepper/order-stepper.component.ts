@@ -18,6 +18,7 @@ export class OrderStepperComponent implements OnInit {
 
   selectedFinalProduct: Product;
   selectedFinalClubMember: ClubMember;
+  relatedPhoto64BaseEncoded: string;
 
   constructor(private _formBuilder: FormBuilder,
   private messageService: MessageService,
@@ -37,11 +38,16 @@ export class OrderStepperComponent implements OnInit {
       this.selectedFinalProduct = product;
     }
 
+  onPhotoCapture(photo64BaseEncoded: string){
+    this.relatedPhoto64BaseEncoded = photo64BaseEncoded;
+  }
+
   onFinish(): void {
     this.messageService.add('Click Finish');
     var newConsumption : Consumption = new Consumption();
     newConsumption.product = this.selectedFinalProduct;
     newConsumption.clubMember = this.selectedFinalClubMember;
+    newConsumption.photoBase64Encoded = this.relatedPhoto64BaseEncoded;
 
     this.consumptionService.addConsumption(newConsumption);
   }

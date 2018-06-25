@@ -6,4 +6,5 @@ export class Consumption {
   date: Date;
   product: Product;
   clubMember: ClubMember;
+  photoBase64Encoded: string;
 }

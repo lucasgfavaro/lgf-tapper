@@ -28,4 +28,4 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
-<app-photo-capture></app-photo-capture>
+<app-photo-capture (photo64BaseEncoded)="onPhotoCapture($event)"></app-photo-capture>

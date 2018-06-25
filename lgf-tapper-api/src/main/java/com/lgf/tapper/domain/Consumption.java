@@ -21,6 +21,7 @@ public class Consumption {
     private LocalDateTime createdOn;
     private Product product;
     private ClubMember clubMember;
+    private String photoBase64Encoded;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     public LocalDateTime getCreatedOn() {
