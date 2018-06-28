@@ -13,8 +13,6 @@ export class PhotoCaptureComponent implements OnInit {
     @ViewChild("canvas")
     public canvas: ElementRef;
 
-    public captures: Array<any>;
-
     @Output() photo64BaseEncoded  = new EventEmitter<String>();
 
     public constructor() {
@@ -32,11 +30,9 @@ export class PhotoCaptureComponent implements OnInit {
         }
     }
 
-    public capture() {
-      //  this.photo64BaseEncoded.emit(this.video.nativeElement);
-        var context = this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 320, 240);
-this.photo64BaseEncoded.emit(this.canvas.nativeElement.toDataURL("image/png"));
-        this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
+    public capturePhoto() {
+        this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 320, 240);
+        this.photo64BaseEncoded.emit(this.canvas.nativeElement.toDataURL("image/png"));
     }
 
 }

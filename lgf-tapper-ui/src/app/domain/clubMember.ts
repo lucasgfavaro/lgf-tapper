@@ -1,5 +1,6 @@
 export class ClubMember {
-  id: number;
-  firstName: string;
-  lastName: string;
+  constructor(
+  public id: number,
+  public firstName: string,
+  public lastName: string) { }
 }
