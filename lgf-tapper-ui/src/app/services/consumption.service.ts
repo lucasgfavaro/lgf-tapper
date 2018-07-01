@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ConsumptionService {
-  private consumptionsUrl = 'http://localhost:8080/api/consumptions';
+  private consumptionsUrl = 'http://localhost:9091/api/consumptions';
 
   constructor(private http: HttpClient,
   private messageService: MessageService) { }

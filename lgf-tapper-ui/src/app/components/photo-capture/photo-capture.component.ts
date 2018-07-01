@@ -16,7 +16,6 @@ export class PhotoCaptureComponent implements OnInit {
     @Output() photo64BaseEncoded  = new EventEmitter<String>();
 
     public constructor() {
-        this.captures = [];
     }
 
     public ngOnInit() { }

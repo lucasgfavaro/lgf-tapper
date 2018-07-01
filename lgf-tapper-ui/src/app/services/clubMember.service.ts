@@ -8,7 +8,7 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class ClubMemberService {
-  private clubMembersUrl = 'http://localhost:8080/api/clubmembers';
+  private clubMembersUrl = 'http://localhost:9091/api/clubmembers';
 
   constructor(private http: HttpClient,
   private messageService: MessageService) { }

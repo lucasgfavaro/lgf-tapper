@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { FormsModule } from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
 , MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatStepperModule} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +48,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     BrowserAnimationsModule,
     AppRoutingModule,
     LayoutModule,
+    FormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

@@ -9,7 +9,7 @@ import { MessageService } from './message.service';
 })
 export class ProductService {
 
-  private productsUrl = 'http://localhost:8080/api/products';
+  private productsUrl = 'http://localhost:9091/api/products';
 
   constructor(private http: HttpClient,
   private messageService: MessageService) { }
