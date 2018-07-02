@@ -7,52 +7,51 @@ import { Consumption } from '../../domain/consumption';
 import { ConsumptionService } from '../../services/consumption.service';
 import { PhotoCaptureComponent } from '../photo-capture/photo-capture.component';
 
-@Component({
-  selector: 'app-order-stepper',
-  templateUrl: './order-stepper.component.html',
-  styleUrls: ['./order-stepper.component.css']
-})
+@Component( {
+    selector: 'app-order-stepper',
+    templateUrl: './order-stepper.component.html',
+    styleUrls: ['./order-stepper.component.css']
+} )
 export class OrderStepperComponent implements OnInit {
 
-  isLinear = false;
-  formGroup: FormGroup;
+    isLinear = false;
+    formGroup: FormGroup;
 
-  selectedFinalProduct: Product;
-  selectedFinalClubMember: ClubMember;
-  relatedPhoto64BaseEncoded: string;
-  @ViewChild(PhotoCaptureComponent)
-  private photoCaptureComponent: PhotoCaptureComponent;
+    selectedFinalProduct: Product;
+    selectedFinalClubMember: ClubMember;
+    relatedPhoto64BaseEncoded: string;
+    @ViewChild( PhotoCaptureComponent )
+    private photoCaptureComponent: PhotoCaptureComponent;
 
-  constructor(private _formBuilder: FormBuilder,
-  private messageService: MessageService,
-  private consumptionService: ConsumptionService) { }
+    constructor( private _formBuilder: FormBuilder,
+        private messageService: MessageService,
+        private consumptionService: ConsumptionService ) { }
 
-  ngOnInit() {
-    this.formGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-  }
-
-  onClubMemberSelection(clubMember: ClubMember) {
-      this.selectedFinalClubMember = clubMember;
-      this.photoCaptureComponent.capturePhoto();
+    ngOnInit() {
+        this.formGroup = this._formBuilder.group( {
+            firstCtrl: ['', Validators.required]
+        } );
     }
 
-  onProductSelection(product: Product) {
-      this.selectedFinalProduct = product;
+    onClubMemberSelection( clubMember: ClubMember ) {
+        this.selectedFinalClubMember = clubMember;
+        this.photoCaptureComponent.capturePhoto();
     }
 
-  onPhotoCapture(photo64BaseEncoded: string){
-    this.relatedPhoto64BaseEncoded = photo64BaseEncoded;
-  }
+    onProductSelection( product: Product ) {
+        this.selectedFinalProduct = product;
+    }
 
+    onPhotoCapture( photo64BaseEncoded: string ) {
+        this.relatedPhoto64BaseEncoded = photo64BaseEncoded;
+    }
 
-  onFinish(): void {
-    this.messageService.add('Click Finish');
-    var newConsumption : Consumption = new Consumption(null,null,null,null,null);
-    newConsumption.product = this.selectedFinalProduct;
-    newConsumption.clubMember = this.selectedFinalClubMember;
-    newConsumption.photoBase64Encoded = this.relatedPhoto64BaseEncoded;
-    this.consumptionService.addConsumption(newConsumption);
-  }
+    onFinish(): void {
+        this.messageService.add( 'Click Finish' );
+        var newConsumption: Consumption = new Consumption( null, null, null, null, null );
+        newConsumption.product = this.selectedFinalProduct;
+        newConsumption.clubMember = this.selectedFinalClubMember;
+        newConsumption.photoBase64Encoded = this.relatedPhoto64BaseEncoded;
+        this.consumptionService.addConsumption( newConsumption ).subscribe( consumption => this.messageService.add( 'Consumption Added' ) );
+    }
 }

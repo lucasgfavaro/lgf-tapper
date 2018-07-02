@@ -8,28 +8,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/consumptions")
 public class ConsumptionResource {
 
-    private ConsumptionService service;
+	private ConsumptionService service;
 
-    @Autowired
-    public ConsumptionResource(ConsumptionService consumptionService) {
-         this.service = consumptionService;
-    }
+	@Autowired
+	public ConsumptionResource(ConsumptionService consumptionService) {
+		this.service = consumptionService;
+	}
 
-    @RequestMapping(value = "/consumptions", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Consumption> findAll() {
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public List<Consumption> findAll() {
 
-        return service.findAll();
-    }
+		return service.findAll();
+	}
 
-    @RequestMapping(value = "/consumptions", method = RequestMethod.POST)
-    public void create(@RequestBody Consumption consumption) {
+	@RequestMapping(method = RequestMethod.POST)
+	public void create(@RequestBody Consumption consumption) {
 
-        service.save(consumption);
-    }
-
+		service.save(consumption);
+	}
 
 }

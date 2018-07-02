@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/products")
 public class ProductResource {
 
-    private ProductService service;
+	private ProductService service;
 
-    @Autowired
-    public ProductResource(ProductService productService) {
-        this.service = productService;
-    }
+	@Autowired
+	public ProductResource(ProductService productService) {
+		this.service = productService;
+	}
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Product> getProduct() {
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public List<Product> getProduct() {
 
-        return service.getAll();
-    }
+		return service.getAll();
+	}
 }

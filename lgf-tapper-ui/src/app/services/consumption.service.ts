@@ -27,9 +27,9 @@ export class ConsumptionService {
     return this.http.get<Consumption[]>(this.consumptionsUrl);
   }
 
-  addConsumption(consumption: Consumption) {
+  addConsumption(consumption: Consumption): Observable<Consumption> {
     this.messageService.add('ConsumptionService: Post consumption');
-    return this.http.post<Consumption>(this.consumptionsUrl,consumption,httpOptions).subscribe();
+    return this.http.post<Consumption>(this.consumptionsUrl,consumption,httpOptions);
   }
 
   private handleError(error: HttpErrorResponse) {

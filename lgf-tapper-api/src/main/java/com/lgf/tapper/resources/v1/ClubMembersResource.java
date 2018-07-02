@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/clubmembers")
 public class ClubMembersResource {
 
-    private ClubMemberService service;
+	private ClubMemberService service;
 
-    @Autowired
-    public ClubMembersResource(ClubMemberService clubMemberService) {
-         this.service = clubMemberService;
-    }
+	@Autowired
+	public ClubMembersResource(ClubMemberService clubMemberService) {
+		this.service = clubMemberService;
+	}
 
-    @RequestMapping(value = "/clubmembers", method = RequestMethod.GET)
-    @ResponseBody
-    public List<ClubMember> getClubMembers() {
-        return service.getAll();
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public List<ClubMember> getClubMembers() {
+		return service.getAll();
+	}
 }
