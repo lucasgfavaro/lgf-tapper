@@ -23,7 +23,7 @@ export class ConsumptionsListComponent implements OnInit {
     consumptions: Consumption[];
 
     constructor( private messageService: MessageService, private consumptionService: ConsumptionService
-            , private recognitionService: RecognitionService ) { }
+        , private recognitionService: RecognitionService ) { }
 
     ngOnInit() {
         this.getConsumptions();
@@ -36,7 +36,9 @@ export class ConsumptionsListComponent implements OnInit {
 
     indexFace( consumption: Consumption ) {
         var indexFace = new IndexFace( consumption.clubMember, consumption.photoBase64Encoded );
-        this.recognitionService.indexFace( indexFace ).subscribe( faceId => this.messageService.add( "Face Id:" ) );
+        this.recognitionService.indexFace( indexFace ).subscribe(
+                ( faceId: Map<String, string> ) =>
+                this.messageService.add(  faceId.faceId ) );
     }
 
 }

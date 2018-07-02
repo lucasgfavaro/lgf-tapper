@@ -20,10 +20,10 @@ export class RecognitionService {
   constructor(private http: HttpClient,
   private messageService: MessageService) { }
 
-  indexFace( indexFace : IndexFace ) : Observable<String> {
+  indexFace( indexFace : IndexFace ) : Observable<Map<String,string>> {
     this.messageService.add('ReconitionService: Indexed Face');
     // TODO: Fix response 
-    return this.http.post<String>(this.recognitionUrl,indexFace,httpOptions);
+    return this.http.post<Map<String,string>>(this.recognitionUrl,indexFace,httpOptions);
   }
   
   private handleError(error: HttpErrorResponse) {
