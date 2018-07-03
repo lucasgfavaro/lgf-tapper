@@ -33,46 +33,32 @@ public class RecognitionService {
 	public RecognitionService() {
 	}
 
-	
-	public BufferedImage decodeToImage(String imageString) {
-		 
-        BufferedImage image = null;
-        byte[] imageByte;
-        try {
-            imageByte = Base64.decode(imageString);
-            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
-            image = ImageIO.read(bis);
-            bis.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
-	
-	public Image convert(String image)  {
+	public Image convertStringToImage(String image) {
 
-		// byte[] array = image.split(",")[1].getBytes();
+		ByteBuffer byteBuffer = null;
 
-		BufferedImage bufImg =  this.decodeToImage(image.split(",")[1]);
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
-			ImageIO.write(bufImg, "jpg", baos);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			byte[] imageByte = Base64.decode(image.split(",")[1]);
+			ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+			BufferedImage bufferedImage = ImageIO.read(bis);
+			bis.close();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(bufferedImage, "png", baos);
+			byteBuffer = ByteBuffer.wrap(baos.toByteArray());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ByteBuffer byteBuffer = ByteBuffer.wrap(baos.toByteArray());
-		return new Image().withBytes(byteBuffer);
 
+		return new Image().withBytes(byteBuffer);
 	}
 
 	public String indexFace(IndexFace indexFace) {
 		String faceId = "faceId1";
 
 		AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
-		Image image = this.convert(indexFace.getPhotoBase64Encoded());
+		Image image = this.convertStringToImage(indexFace.getPhotoBase64Encoded());
 		IndexFacesRequest indexFacesRequest = new IndexFacesRequest().withImage(image).withCollectionId(COLLECTION_ID)
-				.withExternalImageId("ID").withDetectionAttributes("ALL");
+				.withExternalImageId("LucasFavaro").withDetectionAttributes("ALL");
 
 		IndexFacesResult indexFacesResult = rekognitionClient.indexFaces(indexFacesRequest);
 
