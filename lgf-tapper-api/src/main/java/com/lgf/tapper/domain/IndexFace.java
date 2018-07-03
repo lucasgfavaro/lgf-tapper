@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class IndexFace {
 	
-	private String base64Image;
+	private String photoBase64Encoded;
 	private ClubMember clubMember;
 	
 }

@@ -32,7 +32,7 @@ export class ConsumptionsListComponent implements OnInit {
     getConsumptions(): void {
         this.consumptionService.getConsumptions()
             .subscribe( consumptions => this.consumptions = consumptions );
-    }
+    } 
 
     indexFace( consumption: Consumption ) {
         var indexFace = new IndexFace( consumption.clubMember, consumption.photoBase64Encoded );
