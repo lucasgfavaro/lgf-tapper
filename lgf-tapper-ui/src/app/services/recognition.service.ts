@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { IndexFace } from '../domain/indexFace';
+import { RecognFace } from '../domain/recognFace';
+import { RecognFaceResults } from '../domain/recognFaceResults';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { HttpErrorResponse } from "@angular/common/http";
@@ -15,16 +17,23 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RecognitionService {
-  private recognitionUrl = 'http://localhost:9091/api/recognitions';
+    
+  private faceIndexUrl = 'http://localhost:9091/api/faceIndex';
+  private faceRecognUrl = 'http://localhost:9091/api/faceRecogn';
 
   constructor(private http: HttpClient,
   private messageService: MessageService) { }
 
   indexFace( indexFace : IndexFace ) : Observable<Map<String,string>> {
     this.messageService.add('ReconitionService: Indexed Face');
-    // TODO: Fix response 
-    return this.http.post<Map<String,string>>(this.recognitionUrl,indexFace,httpOptions);
+    return this.http.post<Map<String,string>>(this.faceIndexUrl,indexFace,httpOptions);
   }
+  
+  recognFace( recognFace : RecognFace ) : Observable<RecognFaceResults> {
+      this.messageService.add('ReconitionService: Recogn Face');
+      
+      return this.http.post<RecognFaceResults>(this.faceRecognUrl,recognFace,httpOptions);
+    }
   
   private handleError(error: HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {

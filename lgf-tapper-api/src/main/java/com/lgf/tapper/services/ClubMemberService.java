@@ -10,15 +10,28 @@ import java.util.List;
 @Service
 public class ClubMemberService {
 
-    private ClubMemberRepository repository;
+	private ClubMemberRepository repository;
 
-    @Autowired
-    public ClubMemberService(ClubMemberRepository repository) {
-        this.repository = repository;
-    }
+	@Autowired
+	public ClubMemberService(ClubMemberRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<ClubMember> getAll() {
-        return (repository.findAll());
-    }
+	public List<ClubMember> getAll() {
+		return (repository.findAll());
+	}
 
+	public ClubMember create(ClubMember clubMember) {
+		clubMember = this.repository.insert(clubMember);
+		return clubMember;
+	}
+
+	public ClubMember update(ClubMember clubMember) {
+		clubMember = this.repository.save(clubMember);
+		return clubMember;
+	}
+
+	public void delete(String clubMemberId) {
+		this.repository.deleteById(clubMemberId);
+	}
 }

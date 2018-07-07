@@ -21,8 +21,8 @@ public class ConsumptionResource {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<Consumption> findAll() {
-
-		return service.findAll();
+		List<Consumption> consumptions = service.findAll();
+		return consumptions;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

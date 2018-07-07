@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { LayoutModule } from '@angular/cdk/layout';
+import { LayoutModule } from '@angular/cdk/layout'; 
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
 , MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatStepperModule} from '@angular/material';

@@ -17,12 +17,20 @@ import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
+import com.amazonaws.services.rekognition.model.FaceMatch;
 import com.amazonaws.services.rekognition.model.FaceRecord;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.services.rekognition.model.IndexFacesRequest;
 import com.amazonaws.services.rekognition.model.IndexFacesResult;
+import com.amazonaws.services.rekognition.model.SearchFacesByImageRequest;
+import com.amazonaws.services.rekognition.model.SearchFacesByImageResult;
 import com.amazonaws.util.Base64;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lgf.tapper.domain.IndexFace;
+import com.lgf.tapper.domain.IndexFaceResults;
+import com.lgf.tapper.domain.RecognFace;
+import com.lgf.tapper.domain.RecognFaceResults;
 
 @Service
 public class RecognitionService {
@@ -52,13 +60,15 @@ public class RecognitionService {
 		return new Image().withBytes(byteBuffer);
 	}
 
-	public String indexFace(IndexFace indexFace) {
-		String faceId = "faceId1";
+	public IndexFaceResults indexFace(IndexFace indexFace) {
+		IndexFaceResults indexFaceResults = new IndexFaceResults();
 
 		AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
 		Image image = this.convertStringToImage(indexFace.getPhotoBase64Encoded());
-		IndexFacesRequest indexFacesRequest = new IndexFacesRequest().withImage(image).withCollectionId(COLLECTION_ID)
-				.withExternalImageId("LucasFavaro").withDetectionAttributes("ALL");
+		IndexFacesRequest indexFacesRequest = new IndexFacesRequest()
+				.withImage(image).withCollectionId(COLLECTION_ID).withExternalImageId(indexFace.getClubMember()
+						.getFirstName().concat("-").concat(indexFace.getClubMember().getLastName().replace(" ", "-")))
+				.withDetectionAttributes("ALL");
 
 		IndexFacesResult indexFacesResult = rekognitionClient.indexFaces(indexFacesRequest);
 
@@ -67,8 +77,35 @@ public class RecognitionService {
 		for (FaceRecord faceRecord : faceRecords) {
 			System.out.println("Face detected: Faceid is " + faceRecord.getFace().getFaceId());
 		}
+		// TODO: Ver cómo hacer para procesar sólo una cara
+		indexFaceResults.setFaceId(indexFacesResult.getFaceRecords().get(0).getFace().getFaceId());
+		return indexFaceResults;
+	}
 
-		return faceId;
+	public RecognFaceResults recognFace(RecognFace searchFace) {
+
+		RecognFaceResults recognFaceResults = new RecognFaceResults();
+		AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
+		ObjectMapper objectMapper = new ObjectMapper();
+		// Get an image object from S3 bucket.
+		Image image = this.convertStringToImage(searchFace.getPhotoBase64Encoded());
+		// Search collection for faces similar to the largest face in the image.
+		SearchFacesByImageRequest searchFacesByImageRequest = new SearchFacesByImageRequest()
+				.withCollectionId(COLLECTION_ID).withImage(image).withFaceMatchThreshold(70F).withMaxFaces(2);
+		SearchFacesByImageResult searchFacesByImageResult = rekognitionClient
+				.searchFacesByImage(searchFacesByImageRequest);
+		System.out.println("Faces matching largest face in image from");
+		List<FaceMatch> faceImageMatches = searchFacesByImageResult.getFaceMatches();
+		for (FaceMatch face : faceImageMatches) {
+			try {
+				System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(face));
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println();
+		}
+		return recognFaceResults;
 	}
 
 }

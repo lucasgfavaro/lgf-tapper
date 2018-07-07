@@ -6,5 +6,6 @@
     {{ consumption.createdOn | uppercase }}
     <img src="{{consumption.photoBase64Encoded}}" height="50" />
     <button mat-button (click)="indexFace(consumption)"> Index Face </button>
+    <button mat-button (click)="recognFace(consumption)"> Recogn Face </button>
   </li>
 </div>
