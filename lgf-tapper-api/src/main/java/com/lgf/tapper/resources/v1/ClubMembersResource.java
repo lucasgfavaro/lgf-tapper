@@ -25,8 +25,14 @@ public class ClubMembersResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public List<ClubMember> getClubMembers() {
+	public List<ClubMember> listClubMembers() {
 		return service.getAll();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public ClubMember getClubMember(@PathVariable String id) {
+		return service.get(id).get();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
