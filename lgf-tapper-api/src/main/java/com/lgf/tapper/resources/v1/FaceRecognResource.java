@@ -27,7 +27,6 @@ public class FaceRecognResource {
 	@ResponseBody
 	public RecognFaceResults recognFace(@RequestBody RecognFace recognFace) {
 		RecognFaceResults recognFaceResults = service.recognFace(recognFace);
-		recognFaceResults.setFaceId("blabala");
 		return recognFaceResults;
 	}
 }

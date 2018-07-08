@@ -6,7 +6,8 @@ import lombok.Setter;
 @Data
 @Setter
 public class RecognFaceResults {
-	
-	private String faceId;
+
+	private RecognFace recognFace;
+	private ClubMember clubMember;
 
 }

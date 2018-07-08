@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Consumption } from '../../domain/consumption';
 import { ClubMember } from '../../domain/clubMember';
 import { IndexFace } from '../../domain/indexFace';
-import { RecognFace } from '../../domain/recognFace'; 
+import { RecognFace } from '../../domain/recognFace';
 import { RecognitionService } from '../../services/recognition.service';
 import { ConsumptionService } from '../../services/consumption.service';
 import { MessageService } from '../../services/message.service';
@@ -33,20 +33,18 @@ export class ConsumptionsListComponent implements OnInit {
     getConsumptions(): void {
         this.consumptionService.getConsumptions()
             .subscribe( consumptions => this.consumptions = consumptions );
-    } 
+    }
 
     indexFace( consumption: Consumption ) {
         var indexFace = new IndexFace( consumption.clubMember, consumption.photoBase64Encoded );
-        this.recognitionService.indexFace( indexFace ).subscribe(
-                ( faceId: Map<String, string> ) =>
-                this.messageService.add(  faceId.faceId ) ); 
+        this.recognitionService.indexFace( indexFace ).subscribe
+            ( indexFaceResults => this.messageService.add( indexFaceResults.faceId.toString() ) );
     }
 
     recognFace( consumption: Consumption ) {
         var recognFace = new RecognFace( consumption.photoBase64Encoded );
         this.recognitionService.recognFace( recognFace ).subscribe
-                ( searchFaceResults  => 
-                this.messageService.add(  "" ) ); 
+            ( recognFaceResults => this.messageService.add( recognFaceResults.clubMember.id.toString() ) );
     }
-    
+
 }

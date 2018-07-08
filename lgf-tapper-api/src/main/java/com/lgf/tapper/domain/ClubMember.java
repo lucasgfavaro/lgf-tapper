@@ -12,5 +12,6 @@ public class ClubMember {
     private String id;
     private String firstName;
     private String lastName;
-
+    private String AWSRekognFaceId;
+    private String mainBase64Photo;
 }
