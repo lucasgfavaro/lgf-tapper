@@ -5,10 +5,14 @@ import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
+import com.amazonaws.services.rekognition.model.DeleteFacesRequest;
+import com.amazonaws.services.rekognition.model.Face;
 import com.amazonaws.services.rekognition.model.FaceMatch;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.services.rekognition.model.IndexFacesRequest;
 import com.amazonaws.services.rekognition.model.IndexFacesResult;
+import com.amazonaws.services.rekognition.model.ListFacesRequest;
+import com.amazonaws.services.rekognition.model.ListFacesResult;
 import com.amazonaws.services.rekognition.model.SearchFacesByImageRequest;
 import com.amazonaws.services.rekognition.model.SearchFacesByImageResult;
 import com.lgf.tapper.domain.ClubMember;
@@ -41,6 +45,25 @@ public class RecognitionService {
 	// * Programar contra una interfaz para abstraer el servicio de reconocimiento
 	// de AWS
 	// * Move parameters to application properties
+	// * Refact ListAll ( Pagination & wrap AWS collection result)
+
+	public ListFacesResult listAll() {
+
+		ListFacesRequest listFacesRequest = new ListFacesRequest().withCollectionId(COLLECTION_ID);
+		ListFacesResult listFacesResult = this.rekognitionClient.listFaces(listFacesRequest);
+		return listFacesResult;
+	}
+
+	public Face get(String faceId) {
+
+		ListFacesRequest listFacesRequest = new ListFacesRequest().withCollectionId(COLLECTION_ID)
+				.withMaxResults(1);
+				//.putCustomQueryParameter("faceId", faceId);
+		;
+		ListFacesResult listFacesResult = this.rekognitionClient.listFaces(listFacesRequest);
+
+		return listFacesResult.getFaces().get(0);
+	}
 
 	public IndexFaceResults indexFace(IndexFace indexFace) {
 		IndexFaceResults indexFaceResults = new IndexFaceResults();
@@ -74,26 +97,36 @@ public class RecognitionService {
 		// Prepare Face Recogn parameters
 		SearchFacesByImageRequest searchFacesByImageRequest = new SearchFacesByImageRequest()
 				.withCollectionId(COLLECTION_ID).withImage(image).withFaceMatchThreshold(70F).withMaxFaces(2);
-		
-		try {
-		// Request AWS Rekognition service to Index Face
-		SearchFacesByImageResult searchFacesByImageResult = rekognitionClient
-				.searchFacesByImage(searchFacesByImageRequest);
 
-		if (!searchFacesByImageResult.getFaceMatches().isEmpty()) {
-			// Get the first match
-			FaceMatch faceMatch = searchFacesByImageResult.getFaceMatches().get(0);
-			// If a Face was detected in the Photo and its confidence is acceptable
-			if (faceMatch.getSimilarity() >= CONFIDENCE_FACE_INDEX_DETECTION) {
-				ClubMember clubMember = this.clubMemberService.get(faceMatch.getFace().getExternalImageId()).get();
-				recognFaceResults.setClubMember(clubMember);
+		try {
+			// Request AWS Rekognition service to Index Face
+			SearchFacesByImageResult searchFacesByImageResult = this.rekognitionClient
+					.searchFacesByImage(searchFacesByImageRequest);
+
+			if (!searchFacesByImageResult.getFaceMatches().isEmpty()) {
+				// Get the first match
+				FaceMatch faceMatch = searchFacesByImageResult.getFaceMatches().get(0);
+				// If a Face was detected in the Photo and its confidence is acceptable
+				if (faceMatch.getSimilarity() >= CONFIDENCE_FACE_INDEX_DETECTION) {
+					ClubMember clubMember = this.clubMemberService.get(faceMatch.getFace().getExternalImageId()).get();
+					recognFaceResults.setClubMember(clubMember);
+				}
 			}
-		}
-		}
-		catch (Exception e)
-		{
-			
+		} catch (Exception e) {
+
 		}
 		return recognFaceResults;
+	}
+
+	public void removeFace(String faceId) {
+
+		DeleteFacesRequest deleteFacesRequest = new DeleteFacesRequest().withCollectionId(COLLECTION_ID)
+				.withFaceIds(faceId);
+
+		try {
+			this.rekognitionClient.deleteFaces(deleteFacesRequest);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
