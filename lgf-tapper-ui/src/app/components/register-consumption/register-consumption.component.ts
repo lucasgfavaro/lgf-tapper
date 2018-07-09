@@ -10,13 +10,12 @@ import { PhotoCaptureComponent } from '../photo-capture/photo-capture.component'
 import { ClubMemberSelectorComponent } from "../club-member-selector/club-member-selector.component";
 import { RecognFace } from "src/app/domain/recognFace";
 
-
 @Component( {
-    selector: 'app-order-stepper',
-    templateUrl: './order-stepper.component.html',
-    styleUrls: ['./order-stepper.component.css']
+    selector: 'register-consumption',
+    templateUrl: './register-consumption.component.html',
+    styleUrls: ['./register-consumption.component.css']
 } )
-export class OrderStepperComponent implements OnInit {
+export class RegisterConsumptionComponent implements OnInit {
 
     isLinear = false;
     formGroup: FormGroup;

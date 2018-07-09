@@ -1,0 +1,22 @@
+<mat-grid-list cols="4" >
+	<mat-grid-tile colspan=3 rowspan=1 style="background:lightblue">
+		<app-product-selector (productSelected)="onProductSelection($event)"></app-product-selector>
+	</mat-grid-tile>
+	<mat-grid-tile colspan=1 rowspan=2 style="background:lightgreen">
+		<app-club-member-selector (clubMemberSelected)="onClubMemberSelection($event)"></app-club-member-selector>
+		<button mat-button (click)="onFinish()"> Ok </button>
+	</mat-grid-tile>
+	<mat-grid-tile colspan=1 rowspan=1 style="background:lightpink">
+		<app-photo-capture (photo64BaseEncoded)="onPhotoCapture($event)"></app-photo-capture>
+	</mat-grid-tile>
+	<mat-grid-tile colspan=2 rowspan=1 style="background:#DDBDF1">
+		<div *ngIf="selectedFinalProduct">
+			{{ selectedFinalProduct.id | uppercase }} {{selectedFinalProduct.name | uppercase }}
+		</div>
+    	<div *ngIf="selectedFinalClubMember">
+      		{{ selectedFinalClubMember.id | uppercase }} {{ selectedFinalClubMember.firstName | uppercase }} {{ selectedFinalClubMember.lastName | uppercase }}
+    	</div>
+	</mat-grid-tile>
+	<mat-grid-tile colspan=2 rowspan=1 style="background:#DDBDF1">
+  	</mat-grid-tile>
+</mat-grid-list>

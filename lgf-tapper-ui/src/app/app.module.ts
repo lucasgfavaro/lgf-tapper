@@ -5,19 +5,19 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
+ 
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout'; 
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
-, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatStepperModule} from '@angular/material';
+, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatStepperModule, MatTabsModule} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 
+import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { TapperNavComponent } from './components/tapper-nav/tapper-nav.component';
-import { TapperDashboardComponent } from './components/tapper-dashboard/tapper-dashboard.component';
 import { TapperTableComponent } from './components/tapper-table/tapper-table.component';
 import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
-import { OrderStepperComponent } from './components/order-stepper/order-stepper.component';
+import { RegisterConsumptionComponent } from './components/register-consumption/register-consumption.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ClubMemberSelectorComponent } from './components/club-member-selector/club-member-selector.component';
 import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.component';
@@ -27,20 +27,22 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
+// TODO: Implement different modules for lazy loading
+
 @NgModule({
   declarations: [
     AppComponent,
     TapperNavComponent,
-    TapperDashboardComponent,
     TapperTableComponent,
+    MainMenuComponent,
     ProductSelectorComponent,
-    OrderStepperComponent,
-    MessagesComponent,
     ClubMemberSelectorComponent,
+    RegisterConsumptionComponent,
     PhotoCaptureComponent,
     ConsumptionsListComponent,
     ClubMembersListComponent,
     ProductListComponent,
+    MessagesComponent,
     PageNotFoundComponent
   ],
   imports: [
@@ -62,6 +64,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatSortModule,
     MatStepperModule,
     MatFormFieldModule,
+    MatTabsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

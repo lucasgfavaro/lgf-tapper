@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
+import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { ConsumptionsListComponent } from './components/consumptions-list/consumptions-list.component';
-import { OrderStepperComponent } from './components/order-stepper/order-stepper.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TapperTableComponent } from './components/tapper-table/tapper-table.component';
+import { RegisterConsumptionComponent } from './components/register-consumption/register-consumption.component';
 import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-{ path: 'order-consumption', component: OrderStepperComponent },
+{ path: 'main-menu', component: MainMenuComponent },
 { path: 'list-consumptions', component: ConsumptionsListComponent },
-{ path: 'club-members', component: ClubMembersListComponent },
+{ path: 'tapper-table', component: TapperTableComponent },
 { path: 'products', component: ProductListComponent },
-{ path: '',   redirectTo: '/order-consumption', pathMatch: 'full' }
+{ path: '',   redirectTo: '/main-menu', pathMatch: 'full' }
 ,{ path: '**', component: PageNotFoundComponent }
 ];
 

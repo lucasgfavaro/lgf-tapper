@@ -1,34 +1,20 @@
-
-<mat-sidenav-container class="all-wrap" fullscreen>
-  <mat-sidenav #sidenav>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/order-consumption" routerLinkActive="active">Order Drink</a>
-      <a mat-list-item routerLink="/list-consumptions" routerLinkActive="active">Consumptions</a>
-      <a mat-list-item routerLink="/list-products" routerLinkActive="active">Drinks</a>
-      <a mat-list-item routerLink="/list-club-members" routerLinkActive="active">Club Members</a>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <div class="page-wrap" >
-    <header role="banner" >
-      // ! class="fixed-header"
-      <mat-toolbar color="primary">
-        <button
-          type="button"
-          mat-icon-button
-          (click)="sidenav.open()"
-          title="Open sidenav">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>Q.L.T.C Self-service Bar & Tennis Court Reservation</span>
-      </mat-toolbar>
-    </header>
-    <main class="content">
-      <router-outlet></router-outlet>
-    </main>
-    <app-messages></app-messages>
-    <footer >
-      Your sticky footer with a variable height.
-    </footer>
-  </div>
-</mat-sidenav-container>
+<div class="qltc-container">
+	<mat-toolbar color="primary" class="qltc-toolbar">
+		<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+		<h1 class="example-app-name">Q.L.T.C.</h1>
+	</mat-toolbar>
+	<mat-sidenav-container class="qltc-sidenav-container" [style.marginTop.px]="56">
+		<mat-sidenav #snav [mode]="'side'" fixedTopGap="56">
+			<mat-nav-list>
+				<a mat-list-item routerLink="/main-menu" routerLinkActive="active">Main Menu</a>
+	      		<a mat-list-item routerLink="/list-consumptions" routerLinkActive="active">Consumptions</a>
+	      		<a mat-list-item routerLink="/tapper-table" routerLinkActive="active">tabla</a>
+			</mat-nav-list>
+		</mat-sidenav>
+		<main class="content">
+      		<router-outlet></router-outlet>
+    	</main>
+	</mat-sidenav-container>
+	<app-messages></app-messages>
+    <footer > Powered By Lucas Favaro </footer>
+</div>

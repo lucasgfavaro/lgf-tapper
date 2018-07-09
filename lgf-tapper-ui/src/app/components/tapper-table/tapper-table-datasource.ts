@@ -31,6 +31,17 @@ const EXAMPLE_DATA: TapperTableItem[] = [
   {id: 18, name: 'Argon'},
   {id: 19, name: 'Potassium'},
   {id: 20, name: 'Calcium'},
+  {id: 21, name: 'Neon'},
+  {id: 22, name: 'Sodium'},
+  {id: 23, name: 'Magnesium'},
+  {id: 24, name: 'Aluminum'},
+  {id: 25, name: 'Silicon'},
+  {id: 26, name: 'Phosphorus'},
+  {id: 27, name: 'Sulfur'},
+  {id: 28, name: 'Chlorine'},
+  {id: 29, name: 'Argon'},
+  {id: 30, name: 'Potassium'},
+  {id: 31, name: 'Calcium'}
 ];
 
 /**

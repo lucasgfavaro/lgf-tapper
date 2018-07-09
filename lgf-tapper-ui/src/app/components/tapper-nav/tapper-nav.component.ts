@@ -3,19 +3,19 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Component({
-  selector: 'tapper-nav',
-  templateUrl: './tapper-nav.component.html',
-  styleUrls: ['./tapper-nav.component.css']
-})
+@Component( {
+    selector: 'tapper-nav',
+    templateUrl: './tapper-nav.component.html',
+    styleUrls: ['./tapper-nav.component.css']
+} )
 export class TapperNavComponent {
 
 
-    isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    isHandset$: Observable<boolean> = this.breakpointObserver.observe( Breakpoints.Handset )
         .pipe(
-          map(result => result.matches)
+        map( result => result.matches )
         );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+    constructor( private breakpointObserver: BreakpointObserver ) { }
 
-  }
+}
