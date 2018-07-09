@@ -13,23 +13,28 @@ import java.util.List;
 @Service
 public class ConsumptionService {
 
-    private ConsumptionRepository repository;
+	private ConsumptionRepository repository;
 
-    @Autowired
-    public ConsumptionService(ConsumptionRepository repository) {
-        this.repository = repository;
-    }
+	@Autowired
+	public ConsumptionService(ConsumptionRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<Consumption> findAll() {
+	public List<Consumption> findAll() {
 
-        return repository.findAll();
-    }
+		return repository.findAll();
+	}
 
-    public void save(Consumption consumption) {
+	public void save(Consumption consumption) {
 
-        LocalDateTime createdOn = LocalDateTime.now();
-        consumption.setCreatedOn(createdOn);
-        repository.save(consumption);
-    }
+		LocalDateTime createdOn = LocalDateTime.now();
+		consumption.setCreatedOn(createdOn);
+		repository.save(consumption);
+	}
+
+	public void delete(String consumptionId) {
+
+		repository.deleteById(consumptionId);
+	}
 
 }

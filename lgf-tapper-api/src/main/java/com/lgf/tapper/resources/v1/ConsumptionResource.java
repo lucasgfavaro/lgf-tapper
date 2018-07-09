@@ -25,10 +25,14 @@ public class ConsumptionResource {
 		return consumptions;
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable String id) {
+		service.delete(id);
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public void create(@RequestBody Consumption consumption) {
 
 		service.save(consumption);
 	}
-
 }
