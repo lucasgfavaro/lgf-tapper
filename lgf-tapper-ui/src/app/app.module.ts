@@ -5,43 +5,40 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
- 
-import { AppComponent } from './app.component';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
+, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule} from '@angular/material';
+
 import { LayoutModule } from '@angular/cdk/layout'; 
 import { FormsModule } from '@angular/forms';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
-, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatStepperModule, MatTabsModule} from '@angular/material';
+
 import { AppRoutingModule } from './app-routing.module';
-
-import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import { TapperNavComponent } from './components/tapper-nav/tapper-nav.component';
-import { TapperTableComponent } from './components/tapper-table/tapper-table.component';
-import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
-import { RegisterConsumptionComponent } from './components/register-consumption/register-consumption.component';
-import { MessagesComponent } from './components/messages/messages.component';
-import { ClubMemberSelectorComponent } from './components/club-member-selector/club-member-selector.component';
+import { AppMenuComponent } from './components/app-menu/app-menu.component';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
+import { AppFooterComponent } from './components/app-footer/app-footer.component';
+import { BarConsumptionComponent } from './components/bar-consumption/bar-consumption.component';
+import { BarConsumptionListComponent } from './components/bar-consumption-list/bar-consumption-list.component';
+import { BarProductListComponent } from './components/bar-product-list/bar-product-list.component';
+import { ClubMemberSelectorComponent } from './components/selectors/club-member-selector/club-member-selector.component';
+import { ProductSelectorComponent } from './components/selectors/product-selector/product-selector.component';
 import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.component';
-import { ConsumptionsListComponent } from './components/consumptions-list/consumptions-list.component';
-import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
+import { MessagesComponent } from './components/messages/messages.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-
 
 // TODO: Implement different modules for lazy loading
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TapperNavComponent,
-    TapperTableComponent,
-    MainMenuComponent,
+    AppMenuComponent,
+    AppHeaderComponent,
+    AppNavbarComponent,
+    AppFooterComponent,
+    BarConsumptionComponent,
+    BarConsumptionListComponent,
+    BarProductListComponent,
     ProductSelectorComponent,
     ClubMemberSelectorComponent,
-    RegisterConsumptionComponent,
     PhotoCaptureComponent,
-    ConsumptionsListComponent,
-    ClubMembersListComponent,
-    ProductListComponent,
     MessagesComponent,
     PageNotFoundComponent
   ],
@@ -53,7 +50,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     FormsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule,
     MatIconModule,
     MatListModule,
     MatGridListModule,
@@ -62,13 +58,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatTabsModule,
-    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppMenuComponent]
 })
 export class AppModule { }
