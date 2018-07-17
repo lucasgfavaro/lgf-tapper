@@ -12,6 +12,9 @@
 			{{ selectedFinalClubMember.id | uppercase }} {{ selectedFinalClubMember.firstName | uppercase }} {{ selectedFinalClubMember.lastName
 			| uppercase }}
 		</div>
-		<button mat-button (click)="onFinish()"> Ok </button>
+		<div style="display: flex; flex: 0 0 50px;justify-content: space-around;">
+			<button mat-raised-button color="warn" (click)="onCancel()"> Cancel </button>
+			<button mat-raised-button color="primary" (click)="onFinish()"> Ok </button>
+		</div>
 	</div>
 </div>

@@ -1,0 +1,5 @@
+app-product-selector{
+    display: flex;
+    flex: 1 1 auto;
+    overflow: auto;
+}
