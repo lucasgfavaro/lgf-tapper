@@ -1,20 +1,22 @@
 <div style="background-color: rgb(133, 133, 192);display:flex; flex: 1 1 auto">
-	<div style="display:flex; flex: 1 1 80%">
+	<div style="display:flex; flex: 1 1 75%">
 		<app-product-selector (productSelected)="onProductSelection($event)"></app-product-selector>
 	</div>
-	<div style="background-color: rgb(162, 162, 253);display:flex;flex: 1 1 19%; flex-direction: column">
-		<app-photo-capture (photo64BaseEncoded)="onPhotoCapture($event)"></app-photo-capture>
-		<app-club-member-selector (clubMemberSelected)="onClubMemberSelection($event)"></app-club-member-selector>
-		<div *ngIf="selectedFinalProduct">
-			{{ selectedFinalProduct.id | uppercase }} {{selectedFinalProduct.name | uppercase }}
+	<div style="background-color: rgb(162, 162, 253);display:flex;flex: 1 1 25%; flex-direction: column">
+		<div style="display:flex;flex: 1 1 25%">
+			<app-photo-capture (photo64BaseEncoded)="onPhotoCapture($event)"></app-photo-capture>
 		</div>
-		<div *ngIf="selectedFinalClubMember">
-			{{ selectedFinalClubMember.id | uppercase }} {{ selectedFinalClubMember.firstName | uppercase }} {{ selectedFinalClubMember.lastName
-			| uppercase }}
-		</div>
-		<div style="display: flex; flex: 0 0 50px;justify-content: space-around;">
-			<button mat-raised-button color="warn" (click)="onCancel()"> Cancel </button>
-			<button mat-raised-button color="primary" (click)="onFinish()"> Ok </button>
+		<div style="display:flex;flex: 1 1 70%; flex-direction: column">
+			<div>
+				<app-club-member-selector (clubMemberSelected)="onClubMemberSelection($event)"></app-club-member-selector>
+				<div *ngIf="selectedFinalProduct">{{ selectedFinalProduct.id | uppercase }} {{selectedFinalProduct.name | uppercase }}</div>
+				<div *ngIf="selectedFinalClubMember">{{ selectedFinalClubMember.id | uppercase }} {{ selectedFinalClubMember.firstName | uppercase }} {{ selectedFinalClubMember.lastName|
+					uppercase }}</div>
+			</div>
+			<div style="display: flex; flex: 0 0 50px;justify-content: space-around;">
+				<button mat-raised-button color="warn" (click)="onCancel()"> Cancel </button>
+				<button mat-raised-button color="primary" (click)="onFinish()"> Ok </button>
+			</div>
 		</div>
 	</div>
 </div>
