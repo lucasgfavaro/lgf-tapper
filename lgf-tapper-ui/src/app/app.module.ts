@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatIconRegistry, MatListModule, MatGridListModule, MatCardModule
-, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule} from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
+, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatButtonToggleModule} from '@angular/material';
 
 import { LayoutModule } from '@angular/cdk/layout'; 
 import { FormsModule } from '@angular/forms';
@@ -50,9 +50,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     FormsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatIconModule,
     MatListModule,
     MatGridListModule,
+    MatInputModule,
     MatCardModule,
     MatMenuModule,
     MatTableModule,

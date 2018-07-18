@@ -6,7 +6,17 @@
     <span style="padding-left: 15px;">Quilmes Lawn Tennis Club</span>
     <span class="fill-remaining-space"></span>
     <span>
-      <mat-icon class="material-icons md-36">settings_applications</mat-icon>
+      <mat-button-toggle-group #group="matButtonToggleGroup">
+        <mat-button-toggle value="BAR"> Bar
+          <mat-icon>local_bar</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="TENNIS"> Tennis
+          <mat-icon>search</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="SETTINGS"> Settings
+          <mat-icon>settings</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
     </span>
   </mat-toolbar>
 </header>

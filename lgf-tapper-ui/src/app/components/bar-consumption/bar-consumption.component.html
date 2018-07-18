@@ -1,8 +1,24 @@
 <div style="background-color: rgb(133, 133, 192);display:flex; flex: 1 1 auto">
-	<div style="display:flex; flex: 1 1 75%">
+	<div id="product-selector-container" style="display:flex; flex: 1 1 75%;flex-direction: column">
+		<div style="display: flex; flex: 0 0 auto; flex-direction: row">
+			<form class="example-form">
+				<mat-form-field class="example-full-width">
+					<input type="text" matInput placeholder="Search">
+					<mat-icon matSuffix>search</mat-icon>
+				</mat-form-field>
+			</form>
+			<mat-button-toggle-group #group="matButtonToggleGroup">
+				<mat-button-toggle value="left"> Non-Alcoholic
+				</mat-button-toggle>
+				<mat-button-toggle value="center"> Alcoholic
+				</mat-button-toggle>
+				<mat-button-toggle value="right"> All
+				</mat-button-toggle>
+			</mat-button-toggle-group>
+		</div>
 		<app-product-selector (productSelected)="onProductSelection($event)"></app-product-selector>
 	</div>
-	<div style="background-color: rgb(162, 162, 253);display:flex;flex: 1 1 25%; flex-direction: column">
+	<div id="club-member-selecter-container" style="background-color: rgb(162, 162, 253);display:flex;flex: 1 1 25%; flex-direction: column">
 		<div style="display:flex;flex: 1 1 25%">
 			<app-photo-capture (photo64BaseEncoded)="onPhotoCapture($event)"></app-photo-capture>
 		</div>
