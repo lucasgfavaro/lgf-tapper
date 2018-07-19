@@ -1,15 +1,9 @@
-<div style="background-color: rgb(133, 133, 192);display:flex; flex: 1;flex-direction: column">
-  <div style="display:block" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34]">LUCAS</div>
-</div>
-
-
-
-<!-- <li *ngFor="let consumption of consumptions">
-    {{ consumption.product.name | uppercase }}
-    {{ consumption.clubMember.firstName | uppercase }}
-    {{ consumption.product.lastName | uppercase }}
-    {{ consumption.createdOn | uppercase }}
+<div style="background-color: rgb(192, 162, 133);display:flex; flex: 1 1 auto;flex-direction: column">
+  <li *ngFor="let consumption of consumptions">
+    {{ consumption.product.name | uppercase }} {{ consumption.clubMember.firstName | uppercase }} {{ consumption.product.lastName
+    | uppercase }} {{ consumption.createdOn | uppercase }}
     <img src="{{consumption.photoBase64Encoded}}" height="50" />
     <button mat-button (click)="indexFace(consumption)"> Index Face </button>
     <button mat-button (click)="recognFace(consumption)"> Recogn Face </button>
-  </li> -->
+  </li>
+</div>

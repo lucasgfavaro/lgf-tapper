@@ -30,6 +30,8 @@ export class PhotoCaptureComponent implements OnInit {
     }
 
     public capturePhoto() {
+        var width = this.canvas.nativeElement.clientWidth;
+        var height = this.canvas.nativeElement.clientHeight;
         this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 320, 240);
         this.photo64BaseEncoded.emit(this.canvas.nativeElement.toDataURL("image/png"));
     }

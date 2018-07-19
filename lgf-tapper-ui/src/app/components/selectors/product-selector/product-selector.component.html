@@ -1,30 +1,17 @@
 <div class="grid-1 ">
-  <mat-card *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]" class="product-card">
+  <!-- <mat-card *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]" class="product-card"> -->
   <!-- <mat-card *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" class="product-card"> -->
+  <mat-card *ngFor="let product of products" class="product-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Whisky {{item}}</mat-card-title>
-      <mat-card-subtitle>Whisky</mat-card-subtitle>
+      <mat-card-title>{{product.name | uppercase}}</mat-card-title>
+      <mat-card-subtitle>{{product.name | uppercase}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p> Whisky </p>
+      <p> Blablabla </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>ADD</button>
+      <button mat-raised-button (click)="onSelect(product)">ADD</button>
     </mat-card-actions>
-  </mat-card>
-
-<!-- <mat-card *ngFor="let product of products"  class="product-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{product.name | uppercase}}</mat-card-title>
-    <mat-card-subtitle>{{product.name | uppercase}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p> Blablabla </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="onSelect(product)">ADD</button>
-  </mat-card-actions>
-</mat-card> -->
+  </mat-card> -->
 </div>

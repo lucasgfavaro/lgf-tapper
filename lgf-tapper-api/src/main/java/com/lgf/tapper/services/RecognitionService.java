@@ -113,6 +113,7 @@ public class RecognitionService {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 
 		}
 		return recognFaceResults;
