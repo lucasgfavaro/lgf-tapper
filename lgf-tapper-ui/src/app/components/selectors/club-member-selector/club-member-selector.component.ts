@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { ClubMember } from '../../../domain/clubMember';
 import { ClubMemberService } from '../../../services/clubMember.service';
 
@@ -10,7 +10,7 @@ import { ClubMemberService } from '../../../services/clubMember.service';
 export class ClubMemberSelectorComponent implements OnInit {
 
   clubMembers: ClubMember[];
-  selectedClubMember: ClubMember;
+  @Input() selectedClubMember: ClubMember;
   @Output() clubMemberSelected = new EventEmitter<ClubMember>();
 
   constructor(private clubMemberService: ClubMemberService) { }
@@ -19,14 +19,22 @@ export class ClubMemberSelectorComponent implements OnInit {
     this.getClubMembers();
   }
 
+  getSelectedClubMember(): ClubMember {
+    return this.selectedClubMember;
+  }
+
   getClubMembers(): void {
     this.clubMemberService.getClubMembers()
-        .subscribe(clubMembers => this.clubMembers = clubMembers);
+      .subscribe(clubMembers => this.clubMembers = clubMembers);
   }
 
   onSelect(clubMember: ClubMember): void {
     this.selectedClubMember = clubMember;
     this.clubMemberSelected.emit(this.selectedClubMember);
+  }
+
+  compareFn(x: ClubMember, y: ClubMember): boolean {
+    return x && y ? x.id === y.id : x === y;
   }
 
 }

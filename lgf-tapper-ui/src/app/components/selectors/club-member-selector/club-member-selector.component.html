@@ -1,9 +1,8 @@
-<div class="grid grid-pad">
-  <li *ngFor="let clubMember of clubMembers" (click)="onSelect(clubMember)">
-    {{ clubMember.firstName | uppercase }} {{ clubMember.lastName | uppercase }}
-  </li>
-  <div *ngIf="selectedClubMember">
-    <h2>{{ selectedClubMember.firstName | uppercase }} {{ selectedClubMember.lastName | uppercase }} Details</h2>
-    <div><span>id: </span>{{selectedClubMember.id}}</div>
-  </div>
-</div>
+<mat-form-field>
+  <mat-select placeholder="Club Member" [(ngModel)]="selectedClubMember" required [compareWith]="compareFn">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let clubMember of clubMembers" [value]="clubMember">
+      {{ clubMember.firstName | uppercase }} {{ clubMember.lastName | uppercase }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

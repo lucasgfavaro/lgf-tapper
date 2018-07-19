@@ -29,7 +29,9 @@ export class PhotoCaptureComponent implements OnInit {
         }
     }
 
+   
     public capturePhoto() {
+         // TODO: Refactor automatic height and width
         var width = this.canvas.nativeElement.clientWidth;
         var height = this.canvas.nativeElement.clientHeight;
         this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 320, 240);

@@ -57,7 +57,7 @@ export class BarConsumptionComponent implements OnInit {
         this.messageService.add( 'Click Finish' );
         var newConsumption: Consumption = new Consumption( null, null, null, null, null );
         newConsumption.product = this.selectedFinalProduct;
-        newConsumption.clubMember = this.selectedFinalClubMember;
+        newConsumption.clubMember = this.clubMemberSelectorComponent.getSelectedClubMember();
         newConsumption.photoBase64Encoded = this.relatedPhoto64BaseEncoded;
         this.consumptionService.addConsumption( newConsumption ).subscribe( consumption => this.messageService.add( 'Consumption Added' ) );
     }
