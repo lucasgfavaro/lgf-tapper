@@ -31,7 +31,8 @@ export class RecognitionService {
   
   recognFace( recognFace : RecognFace ) : Observable<RecognFaceResults> {
       this.messageService.add('ReconitionService: Recogn Face');
-      return this.http.post<RecognFaceResults>(this.faceRecognUrl,recognFace,httpOptions);
+      //return this.http.post<RecognFaceResults>(this.faceRecognUrl,recognFace,httpOptions);
+   return null;
     }
   
   private handleError(error: HttpErrorResponse) {
