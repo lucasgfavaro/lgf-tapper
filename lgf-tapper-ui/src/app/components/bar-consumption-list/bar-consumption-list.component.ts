@@ -6,42 +6,43 @@ import { RecognitionService } from '../../services/recognition.service';
 import { ConsumptionService } from '../../services/consumption.service';
 import { MessageService } from '../../services/message.service';
 import { slideInDownAnimation } from '../../animations';
-import { Observable } from "rxjs";
 
-@Component( {
+@Component({
     selector: 'bar-consumption-list',
     templateUrl: './bar-consumption-list.component.html',
     styleUrls: ['./bar-consumption-list.component.css'],
     animations: [slideInDownAnimation]
-} ) 
+})
 export class BarConsumptionListComponent implements OnInit {
 
-    @HostBinding( '@routeAnimation' ) routeAnimation = true;
+    @HostBinding('@routeAnimation') routeAnimation = true;
 
-    consumptions: Consumption[];
+    displayedColumns: string[] = ['createdOn', 'product', 'clubMember', 'image', 'actions'];
+    dataSource: Consumption[];
 
-    constructor( private messageService: MessageService, private consumptionService: ConsumptionService
-        , private recognitionService: RecognitionService ) { }
+    constructor(private messageService: MessageService, private consumptionService: ConsumptionService
+        , private recognitionService: RecognitionService) { }
 
     ngOnInit() {
         this.getConsumptions();
     }
 
     getConsumptions(): void {
-        this.consumptionService.getConsumptions()
-            .subscribe( consumptions => this.consumptions = consumptions );
+        this.consumptionService.getConsumptions().subscribe(consumptions => this.dataSource = consumptions);
     }
 
-    indexFace( consumption: Consumption ) {
-        var indexFace = new IndexFace( consumption.clubMember, consumption.photoBase64Encoded );
-        this.recognitionService.indexFace( indexFace ).subscribe
-            ( indexFaceResults => this.messageService.add( indexFaceResults.faceId.toString() ) );
+    indexFace(consumption: Consumption) {
+        var indexFace = new IndexFace(consumption.clubMember, consumption.photoBase64Encoded);
+        this.recognitionService.indexFace(indexFace).subscribe
+            (indexFaceResults => this.messageService.add(indexFaceResults.faceId.toString()));
+
     }
 
-    recognFace( consumption: Consumption ) {
-        var recognFace = new RecognFace( consumption.photoBase64Encoded );
-        this.recognitionService.recognFace( recognFace ).subscribe
-            ( recognFaceResults => this.messageService.add( recognFaceResults.clubMember.id.toString() ) );
+    recognFace(consumption: Consumption) {
+        var recognFace = new RecognFace(consumption.photoBase64Encoded);
+        this.recognitionService.recognFace(recognFace).subscribe
+            (recognFaceResults => this.messageService.add(recognFaceResults.clubMember.id.toString() + " "
+            + recognFaceResults.clubMember.firstName + " " +  recognFaceResults.clubMember.lastName));
     }
 
 }
