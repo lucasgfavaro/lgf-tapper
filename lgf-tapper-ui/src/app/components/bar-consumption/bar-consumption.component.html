@@ -18,19 +18,19 @@
 		</div>
 		<app-product-selector (productSelected)="onProductSelection($event)"></app-product-selector>
 	</div>
-	<div id="club-member-selecter-container" style="background-color: rgb(162, 162, 253);display:flex;flex: 1 1 25%; flex-direction: column">
+	<form #barConsumptionForm="ngForm" style="display:flex;flex: 1 1 25%; flex-direction: column">
 		<div style="display:flex;flex: 1 1 25%">
 			<app-photo-capture (photo64BaseEncoded)="onPhotoCapture($event)"></app-photo-capture>
 		</div>
-		<div style="display:flex;flex: 1 1 70%; flex-direction: column">
+		<div class="selectors-container">
 			<app-club-member-selector (clubMemberSelected)="onClubMemberSelection($event)"></app-club-member-selector>
+		</div>
+		<div>
 			<div *ngIf="selectedFinalProduct">{{selectedFinalProduct.name | uppercase }}</div>
-			<div *ngIf="selectedFinalClubMember">{{ selectedFinalClubMember.firstName | uppercase }} {{ selectedFinalClubMember.lastName|
-					uppercase }}</div>
 		</div>
 		<div style="display: flex; flex: 0 0 50px;justify-content: space-around; padding: 10px">
 			<button mat-raised-button color="warn" (click)="onCancel()"> Cancel </button>
-			<button mat-raised-button color="primary" (click)="onFinish()"> Ok </button>
+			<button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!barConsumptionForm.form.valid"> Ok </button>
 		</div>
-	</div>
+	</form>
 </div>

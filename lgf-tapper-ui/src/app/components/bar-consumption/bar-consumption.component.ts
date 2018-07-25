@@ -53,12 +53,16 @@ export class BarConsumptionComponent implements OnInit {
         this.relatedPhoto64BaseEncoded = photo64BaseEncoded;
     }
 
-    onFinish(): void {
+    onSubmit(): void {
         this.messageService.add( 'Click Finish' );
-        var newConsumption: Consumption = new Consumption( null, null, null, null, null );
-        newConsumption.product = this.selectedFinalProduct;
-        newConsumption.clubMember = this.clubMemberSelectorComponent.getSelectedClubMember();
-        newConsumption.photoBase64Encoded = this.relatedPhoto64BaseEncoded;
-        this.consumptionService.addConsumption( newConsumption ).subscribe( consumption => this.messageService.add( 'Consumption Added' ) );
+         var newConsumption: Consumption = new Consumption( null, null, null, null, null );
+         newConsumption.product = this.selectedFinalProduct;
+         newConsumption.clubMember = this.clubMemberSelectorComponent.getSelectedClubMember();
+         newConsumption.photoBase64Encoded = this.relatedPhoto64BaseEncoded;
+         this.consumptionService.addConsumption( newConsumption ).subscribe( consumption => this.messageService.add( 'Consumption Added' ) );
+    }
+
+    onCancel(): void {
+        
     }
 }

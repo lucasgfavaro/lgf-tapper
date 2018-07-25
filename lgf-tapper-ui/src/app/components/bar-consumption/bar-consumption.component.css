@@ -3,6 +3,12 @@ app-product-selector{
     overflow: auto;
 }
 
+app-photo-capture
+{
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -11,4 +17,27 @@ app-product-selector{
   
   .example-full-width {
     width: 100%;
+  }
+
+  .selector-container {
+    display: flex;
+    flex: 1 1 70%;
+    flex-direction: column;
+  }
+  
+  .selector-container > * {
+    width: 100%;
+  }
+  
+  .selector-right-align {
+    text-align: right;
+  }
+  
+  input.selector-right-align::-webkit-outer-spin-button,
+  input.selector-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.selector-right-align {
+    -moz-appearance: textfield;
   }

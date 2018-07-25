@@ -1,15 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
 , MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatButtonToggleModule, MatSelectModule} from '@angular/material';
-
 import { LayoutModule } from '@angular/cdk/layout'; 
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppMenuComponent } from './components/app-menu/app-menu.component';
@@ -48,6 +46,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     AppRoutingModule,
     LayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatSelectModule,
     MatButtonModule,
