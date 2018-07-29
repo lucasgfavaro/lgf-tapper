@@ -3,6 +3,9 @@ package com.lgf.tapper.services;
 import com.lgf.tapper.domain.Consumption;
 import com.lgf.tapper.repository.ConsumptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -20,9 +23,9 @@ public class ConsumptionService {
 		this.repository = repository;
 	}
 
-	public List<Consumption> findAll() {
+	public Page<Consumption> findAll(int pageNumber, int pageSize) {
 
-		return repository.findAll();
+		return repository.findAll(PageRequest.of(pageNumber, pageSize));
 	}
 
 	public void save(Consumption consumption) {

@@ -6,13 +6,11 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule
-, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatButtonToggleModule, MatSelectModule} from '@angular/material';
+, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatButtonToggleModule, MatSelectModule, MatSidenavModule, MatProgressSpinnerModule} from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout'; 
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppMenuComponent } from './components/app-menu/app-menu.component';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
-import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 import { BarConsumptionComponent } from './components/bar-consumption/bar-consumption.component';
 import { BarConsumptionListComponent } from './components/bar-consumption-list/bar-consumption-list.component';
@@ -22,14 +20,13 @@ import { ProductSelectorComponent } from './components/selectors/product-selecto
 import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AppSideNavComponent } from './components/app-side-nav/app-side-nav.component';
 
 // TODO: Implement different modules for lazy loading
 
 @NgModule({
   declarations: [
-    AppMenuComponent,
     AppHeaderComponent,
-    AppNavbarComponent,
     AppFooterComponent,
     BarConsumptionComponent,
     BarConsumptionListComponent,
@@ -38,7 +35,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ClubMemberSelectorComponent,
     PhotoCaptureComponent,
     MessagesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AppSideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +58,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
-  bootstrap: [AppMenuComponent]
+  bootstrap: [AppSideNavComponent]
 })
 export class AppModule { }

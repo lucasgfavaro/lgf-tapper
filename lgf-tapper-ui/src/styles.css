@@ -14,16 +14,6 @@ html,body{
   margin: 0%;
 }
 
-bar-consumption {
-  flex: 1;
-  display: flex;
-}
-
-bar-consumption-list{
-  flex: 1;
-  display: flex;
-}
-
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }

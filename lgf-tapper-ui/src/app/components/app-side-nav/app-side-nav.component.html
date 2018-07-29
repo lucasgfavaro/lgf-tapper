@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="over" [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">
+      <button aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">close</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item class="sidenav__menu-item" routerLink="/home" routerLinkActive="active">
+        Home</a>
+      <mat-divider></mat-divider>
+      <span class="sidenav__section-title">Bar</span>
+      <a mat-list-item class="sidenav__menu-item" routerLink="/bar-consumption" routerLinkActive="active">Anotar</a>
+      <a mat-list-item class="sidenav__menu-item" routerLink="/bar-consumption-list" routerLinkActive="active">Consumiciones</a>
+      <mat-divider></mat-divider>
+      <span class="sidenav__section-title">Tennis</span>
+      <a mat-list-item class="sidenav__menu-item" routerLink="/tennis-court-reserve" routerLinkActive="active">
+        Court Reserve
+      </a>
+      <mat-divider></mat-divider>
+      <span class="sidenav__section-title">Configuration</span>
+      <a mat-list-item class="sidenav__menu-item" routerLink="/tennis-court-reserve" routerLinkActive="active">Club Members</a>
+      <a mat-list-item class="sidenav__menu-item" routerLink="/tennis-court-reserve" routerLinkActive="active">Products</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Q.L.T.C.</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

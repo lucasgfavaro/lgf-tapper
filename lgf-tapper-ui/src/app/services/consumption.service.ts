@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, map } from 'rxjs/operators';
 import { Consumption } from '../domain/consumption';
-import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
-import { RequestOptions  } from '@angular/http';
+import { Page } from '../domain/page';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
 import { MessageService } from './message.service';
+import { RepositionScrollStrategy } from '@angular/cdk/overlay';
 
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-    })
-  };
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +22,21 @@ export class ConsumptionService {
   private consumptionsUrl = 'http://localhost:9091/api/consumptions';
 
   constructor(private http: HttpClient,
-  private messageService: MessageService) { }
+    private messageService: MessageService) { }
 
-  getConsumptions(): Observable<Consumption[]> {
+  getConsumptions(sort: string, order: string, pageNumber: number, pageSize: number): Observable<Page> {
     this.messageService.add('ConsumptionService: fetched consumptions');
-    return this.http.get<Consumption[]>(this.consumptionsUrl);
+    const options = { params: new HttpParams().set('pageNumber', pageNumber.toString()).set('pageSize', pageSize.toString()) };
+    return this.http.get<Page>(this.consumptionsUrl, options).pipe(
+      map(response =>
+        new Page(response.content, response.totalElements)
+      )
+    );
   }
 
   addConsumption(consumption: Consumption): Observable<Consumption> {
     this.messageService.add('ConsumptionService: Post consumption');
-    return this.http.post<Consumption>(this.consumptionsUrl,consumption,httpOptions);
+    return this.http.post<Consumption>(this.consumptionsUrl, consumption, httpOptions);
   }
 
   private handleError(error: HttpErrorResponse) {

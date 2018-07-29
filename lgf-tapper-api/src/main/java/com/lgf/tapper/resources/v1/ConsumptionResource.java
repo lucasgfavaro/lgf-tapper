@@ -3,6 +3,7 @@ package com.lgf.tapper.resources.v1;
 import com.lgf.tapper.domain.Consumption;
 import com.lgf.tapper.services.ConsumptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,10 +19,11 @@ public class ConsumptionResource {
 		this.service = consumptionService;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, params = { "pageNumber", "pageSize" })
 	@ResponseBody
-	public List<Consumption> findAll() {
-		List<Consumption> consumptions = service.findAll();
+	public Page<Consumption> findAll(@RequestParam("pageNumber") int pageNumber,
+			@RequestParam("pageSize") int pageSize) {
+		Page<Consumption> consumptions = service.findAll(pageNumber, pageSize);
 		return consumptions;
 	}
 

@@ -1,0 +1,26 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 250px;
+  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+}
+
+.sidenav__section-title {
+  color: #202124;
+  display: block;
+  font-size: 18px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-top: 40px;
+}
+
+.sidenav__menu-item {
+  color: #5f6368;
+  display: block;
+  line-height: 10px;
+  text-align: left;
+  width: 100%;
+  font-size: 14px;
+}

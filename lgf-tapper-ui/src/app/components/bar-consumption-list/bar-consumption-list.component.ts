@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Consumption } from '../../domain/consumption';
 import { IndexFace } from '../../domain/indexFace';
 import { RecognFace } from '../../domain/recognFace';
@@ -6,6 +7,15 @@ import { RecognitionService } from '../../services/recognition.service';
 import { ConsumptionService } from '../../services/consumption.service';
 import { MessageService } from '../../services/message.service';
 import { slideInDownAnimation } from '../../animations';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { tap, startWith, switchMap, map, catchError } from '../../../../node_modules/rxjs/operators';
+import { Page } from '../../domain/page';
+import { merge, of } from '../../../../node_modules/rxjs';
+
+export interface ConsumptionPage {
+    items: Consumption[];
+    totalCount: number;
+}
 
 @Component({
     selector: 'bar-consumption-list',
@@ -18,17 +28,45 @@ export class BarConsumptionListComponent implements OnInit {
     @HostBinding('@routeAnimation') routeAnimation = true;
 
     displayedColumns: string[] = ['createdOn', 'product', 'clubMember', 'image', 'actions'];
-    dataSource: Consumption[];
+    data: Consumption[] = [];
+    resultsLength = 0;
+    isLoadingResults = true;
+    isRateLimitReached = false;
 
-    constructor(private messageService: MessageService, private consumptionService: ConsumptionService
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+
+    constructor(private messageService: MessageService, private consumptionService: ConsumptionService, private route: ActivatedRoute
         , private recognitionService: RecognitionService) { }
 
     ngOnInit() {
-        this.getConsumptions();
-    }
 
-    getConsumptions(): void {
-        this.consumptionService.getConsumptions().subscribe(consumptions => this.dataSource = consumptions);
+        // If the user changes the sort order, reset back to the first page.
+        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+        merge(this.sort.sortChange, this.paginator.page)
+            .pipe(
+                startWith({}),
+                switchMap(() => {
+                    this.isLoadingResults = true;
+                    return this.consumptionService!.getConsumptions(
+                        this.sort.active, this.sort.direction, this.paginator.pageIndex + 1, 5);
+                }),
+                map(page => {
+                    // Flip flag to show that loading has finished.
+                    this.isLoadingResults = false;
+                    this.isRateLimitReached = false;
+                    this.resultsLength = page.totalElements;
+
+                    return page.content;
+                }),
+                catchError(() => {
+                    this.isLoadingResults = false;
+                    // Catch if the GitHub API has reached its rate limit. Return empty data.
+                    this.isRateLimitReached = true;
+                    return of([]);
+                })
+            ).subscribe(data => this.data = data);
     }
 
     indexFace(consumption: Consumption) {
@@ -42,7 +80,7 @@ export class BarConsumptionListComponent implements OnInit {
         var recognFace = new RecognFace(consumption.photoBase64Encoded);
         this.recognitionService.recognFace(recognFace).subscribe
             (recognFaceResults => this.messageService.add(recognFaceResults.clubMember.id.toString() + " "
-            + recognFaceResults.clubMember.firstName + " " +  recognFaceResults.clubMember.lastName));
+                + recognFaceResults.clubMember.firstName + " " + recognFaceResults.clubMember.lastName));
     }
 
 }
