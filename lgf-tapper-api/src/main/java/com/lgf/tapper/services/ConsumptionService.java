@@ -24,8 +24,10 @@ public class ConsumptionService {
 	}
 
 	public Page<Consumption> findAll(int pageNumber, int pageSize) {
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
-		return repository.findAll(PageRequest.of(pageNumber, pageSize));
+		return repository.findAll(pageable);
 	}
 
 	public void save(Consumption consumption) {

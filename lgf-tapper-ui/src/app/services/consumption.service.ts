@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, retry, map } from 'rxjs/operators';
+import { catchError, retry, map, delay } from 'rxjs/operators';
 import { Consumption } from '../domain/consumption';
 import { Page } from '../domain/page';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
@@ -27,11 +27,11 @@ export class ConsumptionService {
   getConsumptions(sort: string, order: string, pageNumber: number, pageSize: number): Observable<Page> {
     this.messageService.add('ConsumptionService: fetched consumptions');
     const options = { params: new HttpParams().set('pageNumber', pageNumber.toString()).set('pageSize', pageSize.toString()) };
+
     return this.http.get<Page>(this.consumptionsUrl, options).pipe(
       map(response =>
         new Page(response.content, response.totalElements)
-      )
-    );
+      ), delay(2000)); // TODO: REMOVE DELAY
   }
 
   addConsumption(consumption: Consumption): Observable<Consumption> {

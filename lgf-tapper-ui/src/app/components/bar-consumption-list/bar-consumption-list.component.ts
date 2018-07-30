@@ -1,5 +1,4 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Consumption } from '../../domain/consumption';
 import { IndexFace } from '../../domain/indexFace';
 import { RecognFace } from '../../domain/recognFace';
@@ -7,9 +6,8 @@ import { RecognitionService } from '../../services/recognition.service';
 import { ConsumptionService } from '../../services/consumption.service';
 import { MessageService } from '../../services/message.service';
 import { slideInDownAnimation } from '../../animations';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { tap, startWith, switchMap, map, catchError } from '../../../../node_modules/rxjs/operators';
-import { Page } from '../../domain/page';
+import { MatPaginator, MatSort} from '@angular/material';
+import { startWith, switchMap, map, catchError, mapTo, delay} from '../../../../node_modules/rxjs/operators';
 import { merge, of } from '../../../../node_modules/rxjs';
 
 export interface ConsumptionPage {
@@ -36,8 +34,7 @@ export class BarConsumptionListComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private messageService: MessageService, private consumptionService: ConsumptionService, private route: ActivatedRoute
-        , private recognitionService: RecognitionService) { }
+    constructor(private messageService: MessageService, private consumptionService: ConsumptionService,  private recognitionService: RecognitionService) { }
 
     ngOnInit() {
 
@@ -49,8 +46,9 @@ export class BarConsumptionListComponent implements OnInit {
                 startWith({}),
                 switchMap(() => {
                     this.isLoadingResults = true;
+
                     return this.consumptionService!.getConsumptions(
-                        this.sort.active, this.sort.direction, this.paginator.pageIndex + 1, 5);
+                        this.sort.active, this.sort.direction, this.paginator.pageIndex, 10);
                 }),
                 map(page => {
                     // Flip flag to show that loading has finished.

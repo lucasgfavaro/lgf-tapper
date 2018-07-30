@@ -1,5 +1,7 @@
 <div>
-  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  <div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
   <table mat-table [dataSource]="data" class="mat-elevation-z8" matSort matSortActive="createdOn" matSortDisableClear matSortDirection="asc">
 
     <ng-container matColumnDef="createdOn">
@@ -35,5 +37,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [length]="resultsLength" [pageSize]="5" [pageSizeOptions]="[5]"></mat-paginator>
+  <mat-paginator [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[10]"></mat-paginator>
 </div>
