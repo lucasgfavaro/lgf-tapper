@@ -31,6 +31,7 @@ export class BarConsumptionListComponent implements OnInit {
     isLoadingResults = true;
     isRateLimitReached = false;
 
+
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
@@ -75,6 +76,8 @@ export class BarConsumptionListComponent implements OnInit {
     }
 
     recognFace(consumption: Consumption) {
+        
+
         var recognFace = new RecognFace(consumption.photoBase64Encoded);
         this.recognitionService.recognFace(recognFace).subscribe
             (recognFaceResults => this.messageService.add(recognFaceResults.clubMember.id.toString() + " "
