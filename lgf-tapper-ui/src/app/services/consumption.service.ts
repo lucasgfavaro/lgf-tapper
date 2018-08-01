@@ -31,7 +31,7 @@ export class ConsumptionService {
     return this.http.get<Page>(this.consumptionsUrl, options).pipe(
       map(response =>
         new Page(response.content, response.totalElements)
-      ), delay(2000)); // TODO: REMOVE DELAY
+      ), delay(1000)); // TODO: REMOVE DELAY
   }
 
   addConsumption(consumption: Consumption): Observable<Consumption> {
