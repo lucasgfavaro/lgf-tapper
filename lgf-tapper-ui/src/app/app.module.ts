@@ -21,6 +21,7 @@ import { PhotoCaptureComponent } from './components/photo-capture/photo-capture.
 import { MessagesComponent } from './components/messages/messages.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppSideNavComponent } from './components/app-side-nav/app-side-nav.component';
+import { HomeComponent } from './components/home/home.component';
 
 // TODO: Implement different modules for lazy loading
 
@@ -36,7 +37,8 @@ import { AppSideNavComponent } from './components/app-side-nav/app-side-nav.comp
     PhotoCaptureComponent,
     MessagesComponent,
     PageNotFoundComponent,
-    AppSideNavComponent
+    AppSideNavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
