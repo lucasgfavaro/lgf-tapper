@@ -3,7 +3,8 @@
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1 class="app-name">Q.L.T.C.</h1>
+    <img src="assets/img/QLTC.png" height="52" width="52" >
+    <h1 class="app-name">Quilmes Lawn Tennis Club</h1>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="(isHandset$ | async) ? 56 : 0">
@@ -31,20 +32,6 @@
 
     <mat-sidenav-content>
       <router-outlet></router-outlet>
-
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-<!-- <div class="container" [class.is-mobile]="mobileQuery.matches">
-
-  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isHandset$ ? 56 : 0">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="isHandset$" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(!isHandset$ | async)">
-
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div> -->
