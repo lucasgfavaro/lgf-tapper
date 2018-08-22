@@ -1,0 +1,4 @@
+img {
+    opacity: 0.4;
+    filter: alpha(opacity=10); /* For IE8 and earlier */
+}
