@@ -13,6 +13,10 @@
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
 }
+ 
+.menu_toolbar {
+  box-shadow: inset 0px 0px 5px 3px rgba(0, 0, 0, .24)
+}
 
 h1.app-name {
   margin-left: 8px;
@@ -52,4 +56,8 @@ h1.app-name {
 .sidenav {
   width: 200px;
   box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+}
+
+.app-home{
+  flex: 1 1 auto;
 }

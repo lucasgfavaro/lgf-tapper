@@ -18,7 +18,6 @@ export class AppSideNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {
   }
-
 }
 
 
