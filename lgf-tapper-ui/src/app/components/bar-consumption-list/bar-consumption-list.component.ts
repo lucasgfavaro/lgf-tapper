@@ -46,9 +46,6 @@ export class BarConsumptionListComponent implements OnInit {
                 startWith({}),
                 switchMap(() => {
                     this.isLoadingResults = true;
-
-console.log(this.sort.active +" " + this.sort.direction);
-
                     return this.consumptionService!.getConsumptions(
                         this.sort.active, this.sort.direction, this.paginator.pageIndex, 10);
                 }),
@@ -73,12 +70,9 @@ console.log(this.sort.active +" " + this.sort.direction);
         var indexFace = new IndexFace(consumption.clubMember, consumption.photoBase64Encoded);
         this.recognitionService.indexFace(indexFace).subscribe
             (indexFaceResults => this.messageService.add(indexFaceResults.faceId.toString()));
-
     }
 
     recognFace(consumption: Consumption) {
-        
-
         var recognFace = new RecognFace(consumption.photoBase64Encoded);
         this.recognitionService.recognFace(recognFace).subscribe
             (recognFaceResults => this.messageService.add(recognFaceResults.clubMember.id.toString() + " "

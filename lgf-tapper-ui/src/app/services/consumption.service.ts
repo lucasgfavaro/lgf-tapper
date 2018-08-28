@@ -26,7 +26,12 @@ export class ConsumptionService {
 
   getConsumptions(sort: string, order: string, pageNumber: number, pageSize: number): Observable<Page> {
     this.messageService.add('ConsumptionService: fetched consumptions');
-    const options = { params: new HttpParams().set('pageNumber', pageNumber.toString()).set('pageSize', pageSize.toString()) };
+    var orderBy: string = sort ? sort + ' ' + order : "";
+
+    const options = {
+      params: new HttpParams().set('orderBy', orderBy)
+        .set('pageNumber', pageNumber.toString()).set('pageSize', pageSize.toString())
+    };
 
     return this.http.get<Page>(this.consumptionsUrl, options).pipe(
       map(response =>

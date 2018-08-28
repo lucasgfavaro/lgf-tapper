@@ -19,11 +19,11 @@ public class ConsumptionResource {
 		this.service = consumptionService;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, params = { "pageNumber", "pageSize" })
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public Page<Consumption> findAll(@RequestParam("sort") String sort, @RequestParam("pageNumber") int pageNumber,
-			@RequestParam("pageSize") int pageSize) {
-		Page<Consumption> consumptions = service.findAll(sort, pageNumber, pageSize);
+	public Page<Consumption> findAll(@RequestParam(name = "orderBy", required = false) String orderBy,
+			@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize) {
+		Page<Consumption> consumptions = service.findAll(orderBy, pageNumber, pageSize);
 		return consumptions;
 	}
 
