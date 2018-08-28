@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,9 +26,11 @@ public class ConsumptionService {
 		this.repository = repository;
 	}
 
-	public Page<Consumption> findAll(int pageNumber, int pageSize) {
+	public Page<Consumption> findAll(String sortCriterion, int pageNumber, int pageSize) {
 		
-		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		List<Order> orders = new ArrayList<Order>();
+		Sort sort = Sort.by(orders);
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 
 		return repository.findAll(pageable);
 	}

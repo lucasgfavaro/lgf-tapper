@@ -31,7 +31,6 @@ export class BarConsumptionListComponent implements OnInit {
     isLoadingResults = true;
     isRateLimitReached = false;
 
-
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
@@ -47,6 +46,8 @@ export class BarConsumptionListComponent implements OnInit {
                 startWith({}),
                 switchMap(() => {
                     this.isLoadingResults = true;
+
+console.log(this.sort.active +" " + this.sort.direction);
 
                     return this.consumptionService!.getConsumptions(
                         this.sort.active, this.sort.direction, this.paginator.pageIndex, 10);

@@ -21,9 +21,9 @@ public class ConsumptionResource {
 
 	@RequestMapping(method = RequestMethod.GET, params = { "pageNumber", "pageSize" })
 	@ResponseBody
-	public Page<Consumption> findAll(@RequestParam("pageNumber") int pageNumber,
+	public Page<Consumption> findAll(@RequestParam("sort") String sort, @RequestParam("pageNumber") int pageNumber,
 			@RequestParam("pageSize") int pageSize) {
-		Page<Consumption> consumptions = service.findAll(pageNumber, pageSize);
+		Page<Consumption> consumptions = service.findAll(sort, pageNumber, pageSize);
 		return consumptions;
 	}
 
